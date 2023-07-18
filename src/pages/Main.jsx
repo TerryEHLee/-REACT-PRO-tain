@@ -1,7 +1,12 @@
-import React from "react";
+import React from 'react';
+import MapContainer from '../redux/components/Map/MapContainer';
 
 function Main() {
-  return <div>Main</div>;
+  return (
+    <>
+      <MapContainer />
+    </>
+  );
 }
 
 export default Main;
