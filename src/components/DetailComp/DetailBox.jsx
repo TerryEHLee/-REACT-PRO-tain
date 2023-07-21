@@ -6,7 +6,7 @@ import { getComments, addComment, deleteComment, updateComment } from '../../api
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { auth } from '../../firebase';
-import { GiStoneCrafting } from 'react-icons/gi';
+import { getUsers } from '../../api/users';
 
 const DetailBox = ({ placeData }) => {
   const navigate = useNavigate();
@@ -20,7 +20,14 @@ const DetailBox = ({ placeData }) => {
 
   const { isLoading, isError, data } = useQuery('comments', getComments, {
     onSuccess: (data) => {
+      console.log('Fetched data:', data);
       setDisplayedComments(data.filter((comment) => comment.shopId === shopId));
+    }
+  });
+
+  const { data: userData } = useQuery('users', getUsers, {
+    onSuccess: (userData) => {
+      console.log('Fetched userData:', userData);
     }
   });
 
@@ -58,7 +65,7 @@ const DetailBox = ({ placeData }) => {
       shopId,
       nickName,
       comment,
-      rating, // Save the selected rating in the new comment object
+      rating,
       userId: auth.currentUser.uid
     };
 
@@ -66,7 +73,7 @@ const DetailBox = ({ placeData }) => {
 
     setNickName('');
     setComment('');
-    setRating(0); // Reset rating after adding the comment
+    setRating(0);
   };
 
   const deleteCommentHandler = (id) => {
@@ -92,6 +99,12 @@ const DetailBox = ({ placeData }) => {
     setRating(ratingValue);
   };
 
+  const getUserName = (userId) => {
+    const user = userData?.find((user) => user.id === userId);
+    return user?.name || 'Unknown User'; // Return 'Unknown User' if user is not found
+  };
+
+  console.log('이름:', userData);
   return (
     <>
       <StDetailPage style={{ marginTop: '100px' }}>
@@ -111,12 +124,14 @@ const DetailBox = ({ placeData }) => {
           {data
             ?.filter((comment) => comment.shopId == shopId)
             .map((comment) => {
+              // const user = userData?.find((user) => user.id === comment.userId);
+              // console.log('Comment content:', comment.comment);
+
               return (
                 <div key={comment.id}>
-                  {/* <div>{users.name}</div> */}
-                  <strong>
-                    name| 별점 {comment.rating.toFixed(1)}| {comment.date}
-                  </strong>
+                  <div>
+                    <strong>{getUserName(comment.userId)}</strong>| 별점 {comment.rating.toFixed(1)}| {comment.date}
+                  </div>
                   <button
                     onClick={() => {
                       updateCommentHandler(comment.id);

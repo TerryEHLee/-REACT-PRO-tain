@@ -17,18 +17,34 @@
     {
       "shopId": "25887294",
       "nickName": "",
-      "comment": "1",
-      "rating": 3,
+      "comment": "username",
+      "rating": 4,
       "userId": "knVhnnVoarOno208AlpcB8NesDN2",
-      "id": "5MnwGNA"
+      "id": "dW9s7v4"
     },
     {
       "shopId": "25887294",
       "nickName": "",
-      "comment": "2",
-      "rating": 4,
+      "comment": "name",
+      "rating": 3,
       "userId": "knVhnnVoarOno208AlpcB8NesDN2",
-      "id": "zHXZZdS"
+      "id": "BhRh8cO"
+    },
+    {
+      "shopId": "25887294",
+      "nickName": "",
+      "comment": "5점줄께 이름줘",
+      "rating": 5,
+      "userId": "knVhnnVoarOno208AlpcB8NesDN2",
+      "id": "jMe5hcJ"
+    },
+    {
+      "shopId": "25887294",
+      "nickName": "",
+      "comment": "리뷰",
+      "rating": 3,
+      "userId": "knVhnnVoarOno208AlpcB8NesDN2",
+      "id": "niixBm9"
     }
   ],
   "users": [
